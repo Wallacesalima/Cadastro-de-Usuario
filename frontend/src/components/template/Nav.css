@@ -1,0 +1,36 @@
+aside.menu-area {
+    background-color: var(--bg-dark);
+    border-top: solid 1px rgba(17, 139, 195, 0.627);
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    font-weight: 300;
+}
+
+.menu a:hover {
+    background-image: linear-gradient(to left, #0da4d688 0%, #0747b5de 100%);
+    font-weight: 600;
+}
+
+@media(max-width: 760px) {
+    .menu {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .menu a {
+        display: inline;
+        padding: 15px;
+        margin: 0px;
+    }
+
+    .menu {
+        height: 100% ;
+        justify-content: space-around;
+    }
+}
