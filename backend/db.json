@@ -1,3 +1,14 @@
 {
-  "users": []
+  "users": [
+    {
+      "name": "wallace Almeida ",
+      "email": "wallacealmeida9999@gmail.com",
+      "id": 1
+    },
+    {
+      "name": "Wallace Teste",
+      "email": "wallacealmeida9999@gmail.com",
+      "id": 2
+    }
+  ]
 }

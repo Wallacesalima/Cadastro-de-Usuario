@@ -1,0 +1,77 @@
+Projeto cadastro de usuário, fazendo um crud(Create, Read Update, Delete).
+
+Para começar o projeto criei uma pasta crud onde será armazenado o projeto como um todo  e separei o projeto (crud) em duas pastas com os respectivos nomes frontend e backend.
+
+Usando o terminal e indo ate´a pasta (backend) recem criada e executando o 'npm init -y' criei o package.json onde instalei uma dependência usando 'npm i --save json-server@0.13.0 -E' com isso o json-server é salvo no package.json na versão exata que foi descrita no comando e já cria o node-modules.
+
+Lembando que o node.js  precisa estar previamente instalado para que se possa usa o 'npm' (Node Package Manager) no terminal.
+
+Link do site oficial do node: https://nodejs.org/en/
+
+Voltando ao projeto criei o arquivo 'db.json' nesse arquivo fiz a estrutura básica para que seja criado o web-service onde será registrado os usuários em uma array com nome "users" onde terá os dados (id, name,  e email).
+
+Indo até o packgen.json apaguei o script test e criei o script start dessa forma: "start": "json-server --watch db.json --port 3001" assim no terminal dentro do arquivo backend ao usar o npm start o json-server vai ficar de olho no arquivo db.json assim permitindo alguns tipos de requisições além disso será alocado na porta 3001, por padrão seria alocado na porta 3000, porém o frontend também usaria a mesma porta causando conflito por esse motivo deixei o backend na porta 3001 e o frontend deixareina porta 3000 seguindo o seu padrão.
+
+Com esse web-service posso fazer uma requisição do tipo post onde inclui um novo registro ouse já um novo usuário e também do tipo put ele vai alterar os dados do usuário.
+
+Agora indo para a parte de frontend abri outro terminal, pois quero dois terminais rodando e paralelo um para backend e outro para o front end sendo que um vai rodar o web service e o outro a aplicação web, feito isso e com o segundo terminal aberto fiz o caminho até a pasta de crud e executei o comando 'create-react-app frontend' o qual instalou algumas dependências do react(react, react-dom e react-scripts), criou a pasta frontend dentro da pasta crud onde ficará o meu projeto desenvolvido em react e além do react usei outras dependências sendo elas bootstrap para facilitar na responsividade, estilo da página e estruturação da página, use também o axios para auxiliar nas requisições e todas as operações necessárias , o font awesome que é uma fonte de ícones, o react-router para fazer a navegação entre os componentes e o react-router-dom que é o router usado para aplicação web, então para instalar essas dependerias fui no packgen.json do frontend e nas "dependencies" coloquei nome e versão desejada (EX:  "axios": "0.27.2") das dependências que eu precisava, feito isso executei o comando npm i no terminal na pasta frontend dessa forma as dependências serão instaladas.
+Fui na pasta src que está localizada dentro da pasta frontend e criei uma pasta com o nome de components e dentro dessa pasta criei a pasta template e foi nessa pasta onde criei vários arquivos com as extensões .css e .jsx(jsx se refere a um arquivo react).
+Arquivos criados (Logo, Header, Main, Nav, footer).
+Logo após em cada arquivo .jsx fiz o import dos seus respectivos arquivos .css e do react isso para todos os arquivos criados somente o Main.jsx foi adicionado um import a mais que seria o import para o Header.jsx pois independente de qual componente esteja o header aparacerá e além disso já defini que os componentes seriam componentes funcionais (componentes funcionais são literalmente funções válidas eles recebem um único argumento de objeto “prop” e retornam um elemento react.), dentro de Main.jsx envolvi os componentes Header e Main usando o <React.Fragment>  que nos permite encapsular os elementos filhos sem ter que adicionar um novo elemento ao HTML.
+Criei uma pasta com o nome main que tem os arquivos app.css e app.jsx e dentro de app.jsx fiz o import do app.css, react e de todos os componentes criados na pasta template, além disso defini como um componente funcional que recebe uma div com todos os componentes e depois no arquivo index.js onde importaria o arquivo app do projeto feito com o create-react-app, troquei pôr o app.jsx que está na pasta main que é de fato o arquivo que usei para o desenvolvimento da página.  
+Apaguei alguns arquivos que não estavam sendo usados que seriam o app.css gerado pelo comando create-react-app, o app.js, app.test.js e o logo.svg.
+Dentro de App.css declarei algumas variaveis globais usando o ':root', essas variaveis foram usadas em backgrounds, tamanhos e sombreamento com o intuito dar praticidade ao precisar usar mais de uma vez as sombras por exemplo ou até mesmo alterar o tamanho com mais facilidade.
+Usei o seletor universal (*) e dentro dele defini uma fonte externa ( vídeo do Guanabara explicando como usar fonte externa: https://www.youtube.com/watch?v=3YIXnxA1kqg).
+Comecei a desenvolver o layout em grid, usando o .app que envolve toda a aplicação pois esse foi o nome dado no className da div que possuem todos os componentes.
+Coloquei a margem com 0px ,  o display grid ( introduz um sistema de grid bidimensional (literalmente "grades") para CSS. As grades podem ser usadas para o design de layouts de grandes seções de uma página da web, assim como pequenos elementos de interface), defini que seria duas colunas usando o grid-template-columns, sendo uma com a largura definida na variavel (--aside-width) e a outra coluna 1fr que pega todo o resto e nas linhas definidas por grid-template-rows uma pegava a altura da variavel do header, 1fr que pega a maior altura que der e depois a altura da variável do footer,  já com o grid-template-areas defini oque ia ficar em cada área, sendo que tinham 6 áreas para serem preenchidas dessa forma 
+e as duas primeiras áreas eu coloquei o logo e o header, 
+na segunda linha ficou o menu e o content e por último o menu e footer.
+Defini a altura com 100vh ou seja utilizando o tamanho total do dispositivo, um overflow: auto para caso seja necessário adiciona barra de rolagem e o background degradê azul.
+Usando o grid-area defini qual area representava qual componente, dessa forma deixando eles já ocupando seus devidos espaços.
+Criei uma pasta com nome assets, dentro dessa pasta criei a pasta imgs que coloquei a imagem que vai ser o logo dentro dessa pasta em formato png.
+
+Componente Logo: 
+Importei a imagem que que estava na pasta imgs que estava na pasta assests.
+Preenchi o meu aside com um link que vai ter o logo dentro, e dentro de logo.css eu usei a variavel --bg-dark para ser a cor de background, usei display flex, centralizei o logo isso tudo feito para o aside que envolve a imagem e diretamente pra imagem coloquei padding de 0px 25px ou seja 0 px na vertical e 25 na horizontal dos dois lados do espaço preenchido com o background e defini que a imagem iria ocupar 100% da largura da area. 
+Caso quisesse mudar o tamanho do logo seria muito facil, basta ir até o arquivo app.css e mudar a altura da variavel --logo-height e isso vale para os demais componentes em que sua altura está sendo definida pelas variaveis.
+
+Componente header: 
+Antes de começar a mexer no header fui no app.jsx e importei o css do bootstrap e o css do font-awesome, isso ajudou a fazer o estilo da pagina e a usar icones na aplicação, e dentro da tag Main que está envolvido pela div eu passei 3 parametros sendo eles icon="home"  title="Inicio" e subtitle="Segundo Projeto do capítulo de React." e depois para que o componente Main passe isso para o componente Header eu adicionei na tag Header o {...props} que significa que o Main esta propagando as propriedades que recebe para o Header.
+Abri o Header.jsx e adicionei duas classes sendo a d-none e d-sm-flex.
+d-none = Para celulares o Header não irá aparecer.
+d-sm-flex = Se o dispositivo for do tipo sm para cima ele vai usar o display flex. 
+Dispositivos sm = Pequeno ≥576px.
+Adicionei tambem a classe flex-column para usar o sistema de colunas e não de rows/linhas.
+Coloquei um h1 com o icone e o titulo usando o props pois estou recebendo eles la do main, e depois coloquei um paragrafo recebendo o subtitulo tambem com o props vindo do Main.]
+Dentro de Header.css coloquei o backgound branco, o padding 0px 20px, overflow hidden e white-space nowrap
+A propriedade overflow especifica quando o conteúdo de um elemento de nível de bloco deve ser cortado, exibido com barras de rolagem, ou se ultrapassa o limite do elemento. O parâmetro hidden torna o texto invisível.
+A white-space propriedade CSS define como o espaço em branco dentro de um elemento é tratado.
+E adicionei o box-shadow ou seja o sombreamneto com a variavel --shadow que foi criada no inicio do projeto.
+personalizando o h1 a fonte estava muito grande então coloquei o font-size com 1.8em e o subtitulo já estava em um tamanho legal.
+Componente Footer: 
+Dentro de footer.jsx coloquei um span com o conteudo Desenvolvido por ai referenciei um icone de coração em vermelho e de pois colocando meu nome.
+Em footer.css eu coloquei o display flex, align-items center, justify-content flex end que coloca o conteudo para o fim canto direito e padding de 0px 30px com background branco e usando a variavel --shadow eu coloquei o sombreamento.
+Componente navegação: 
+Coloquei um link (tag <a>), dentro dess link coloquei um icone home e o nome Inicio, adicionei mais um link que recebe um icone users e o nome Usuarios.
+Em nav.css pra deixar menu mais bonito coloquei o background da variavel --bg-dark e um border-top ou seja uma borda somente na borda de cima sendo essa borda solid  com 1px e uma cor proxima da imagem que usei para o logo e para tudo que tinha link eu coloquei o display block que fez cada link ir para sua linha, o text-decoration none ou seja quando passar o cursor em cima não ficara mais sumblinhado, coloquei a cor para ser branco, um padding de 10px dessa vez por colocar somente o 10px ficará em todos os sentidos tanto vertical quanto horizontal e o font-weight de 300 deixando a letra mais fina e usei o hover que é acionado quando o cursor passar em cima, defini que quando isso acontecesse o background ficaria com um gradient e a letra mais grossa pra dar um destaque legal.
+Componente main: 
+Adicionei um container fluid que faz com que o conteúdo ocupe a tela toda do computador, criei uma <div> com as classes p-3 mt-3 e dentro da div coloquei {props.children} ou  seja dentro dessa div ficará as tags filhas que estão la em app.jsx dentro da tag <Main>, e indo em app.jsx e adicionando uma div dentro de <Main> com conteudo:Bem vindo!, um hr e uma tag <p>.
+Criei um novo componente para representar o home, pra isso criei uma nova pasta com nome home e dentro dessa pasta criei o arquivo Home.jsx e nesse arquivo importei o react e o Main, defini que seria um componente funcional, fui em app.jsx peguei toda atag Main copiei e colei no Home.jsx, volto no app.jsx troco a importação do Main para Home e onde estava a Tag <Main> coloquei a tag <Home>, em Main.css eu coloquei um background branco e um box-shadow diferente do que usei na variavel então por isso fiz um sombreamento personalizado ao invez de usar a variavel.
+Criei a pasta user que dentro ficou o arquivo UserCrud.jsx que está importando não somente o react mas o { component } tambem e importando o Main, esse arquivo vai ter uma contante que vai ter icone users, titilu usuarios e subtitle que contem um texto, e criei um componente de classe para viabilizar o metodo de ciclo de vida do react e precisar ter estado.
+Ciclo de vida = Pode desempenhar principais fases e manipular durante suas três fases. As três fases são: Montagem, Atualização e Desmontagem.
+Criei a função render que está retornando uma expressão que tem o < Main {...headerProps} > headerProps: é a constante onde está armazenada os atributos (icone,titulo e subtitulo).
+Dentro da pasta main criei o arquivo Routes.jsx e instalei o react-router-dom com o seguinte comando:
+npm install react-router-dom@6
+Feito essa instalação,importei os componentes do react-router-dom, dessa forma:
+import { Routes, Route } from "react-router-dom" e tabem fi o import  dos comonentes Home e UserCrud.
+Defini o Routes.jsx como um componente funcional e dentro da tag <Routes> defini as rotas entre os componentes usando props.
+Logo depois no arquivo App.jsx, fiz uma importação por meio do import { BrowserRouter } from 'react-router-dom'.
+BrowserRouter: é um componente responsável por informar a nossa aplicação que teremos um roteamento de componentes, por conta disso ele ficará em volta dos componentes <Route>. Route: componente que associa a rota ao componente. Nele temos três parâmetros: component, path e exact.
+
+Também importei o proprio Routes e adicionei a tag <BrowserRouter> copiei minha div e seus conteudos e coloquei dentro dessa tag e substitui o Home pelo Routes  e apago o import do componente Home já que não irei precisar dele mais.
+Em Nav.jsx fiz o importe do Link que é do react-router e substitui o < a href por < Link to e a tag <a que envolvia o <a href foi substituido por <Link> e apaguei os # e em Logo.jsx fiz o mesmo importe do Link e as mesmas substituições.
+Ddntro de UserCrud importei o Axios( Axios é um cliente HTTP baseado em Promises para fazer requisições)...
+
+
+
+
